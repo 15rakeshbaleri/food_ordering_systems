@@ -19,7 +19,7 @@
 
 	<!-- Java Version -->
 	<properties>
-		<java.version>21</java.version> <!-- Update to Java 21 -->
+		<java.version>17</java.version>
 	</properties>
 
 	<!-- Dependencies -->
@@ -64,6 +64,7 @@
 			<version>1.18.30</version> <!-- Latest version -->
 			<optional>true</optional>
 		</dependency>
+
 
 		<!-- Database -->
 		<dependency>

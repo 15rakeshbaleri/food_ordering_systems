@@ -19,10 +19,78 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void setFavorites(List<RestaurantDto> favorites) {
+        this.favorites = favorites;
+    }
+
+    public void setRole(USER_ROLE role) {
+        this.role = role;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public List<RestaurantDto> getFavorites() {
+        return favorites;
+    }
+
+    public USER_ROLE getRole() {
+        return role;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     private String fullname;
     private String password;
     private String email;
-    private  USER_ROLE role; //enum
+
+
+
+    private  USER_ROLE role=   USER_ROLE.ROLE_CUSTOMER; //enum
 
 
     @JsonIgnore  // Ignore orders when the user entity is called
