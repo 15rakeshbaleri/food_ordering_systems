@@ -1,4 +1,0 @@
-package com.EatonClick.EatonClick.repository;
-
-public interface Cart_repo {
-}

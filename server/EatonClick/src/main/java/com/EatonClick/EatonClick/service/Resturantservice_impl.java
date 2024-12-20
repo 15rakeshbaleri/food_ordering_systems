@@ -30,6 +30,7 @@ public class Resturantservice_impl implements Resturantservice {
     @Override
     public Restaurant createResturant(CreateRestaurant createRest, User user) {
         // Save address
+
         Address newAddress = addressRepo.save(createRest.getAddress());
 
         // Create new restaurant
@@ -106,7 +107,7 @@ public class Resturantservice_impl implements Resturantservice {
 
     @Override
     public Restaurant getResturantByUserId(Long userId) throws Exception {
-        Restaurant restaurant = restaurantRepo.FindByOwnerId(userId);
+        Restaurant restaurant = restaurantRepo.findByOwner_Id(userId);
         if (restaurant == null) {
             throw new Exception("Restaurant not found for user with id " + userId);
         }
@@ -125,17 +126,32 @@ public class Resturantservice_impl implements Resturantservice {
         dto.setDescription(restaurant.getDescription());
         dto.setImages(restaurant.getImages());
 
-        // Toggle favorite status
-        if (user.getFavorites().contains(dto)) {
-            user.getFavorites().remove(dto); // Remove from favorites
-        } else {
-            user.getFavorites().add(dto); // Add to favorites
+        boolean isFavorite = false;
+        List<RestaurantDto> favorites = user.getFavorites();
+        for (RestaurantDto favorite : favorites) {
+            if (favorite.getId().equals(id)) {
+                isFavorite = true;
+                break;
+            }
         }
-
-        // Save the updated user object
+        if (isFavorite) {
+            favorites.removeIf(favorite -> favorite.getId().equals(id));
+        } else {
+            favorites.add(dto);
+        }
         userRepo.save(user);
-
-        return dto; // Return the updated DTO
+        return dto;
+//        // Toggle favorite status
+//        if (user.getFavorites().contains(dto)) {
+//            user.getFavorites().remove(dto); // Remove from favorites
+//        } else {
+//            user.getFavorites().add(dto); // Add to favorites
+//        }
+//
+//        // Save the updated user object
+//        userRepo.save(user);
+//
+//        return dto; // Return the updated DTO
     }
 
     @Override

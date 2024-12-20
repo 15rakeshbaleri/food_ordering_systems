@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@Embeddable
+@Entity
 public class RestaurantDto {
 
     private String title;
@@ -14,7 +14,8 @@ public class RestaurantDto {
     private List<String> images;
     @Column(length = 1000)
     private String description;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
 }
