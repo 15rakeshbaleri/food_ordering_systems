@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface Ingredientsservice {
 
-    public IngredientCategory findIngredientById(String name,Long id) throws Exception;
+    public IngredientCategory createIngredientcategory(String name,Long id) throws Exception;
 
     public IngredientCategory findIngredientById(Long id) throws Exception;
 

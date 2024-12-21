@@ -2,7 +2,9 @@ package com.EatonClick.EatonClick.model;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 public class IngredientsItem {
     @Id

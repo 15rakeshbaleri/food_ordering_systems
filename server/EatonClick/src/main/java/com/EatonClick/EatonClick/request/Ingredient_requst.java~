@@ -1,0 +1,4 @@
+package com.EatonClick.EatonClick.request;
+
+public class Ingredient_requst {
+}

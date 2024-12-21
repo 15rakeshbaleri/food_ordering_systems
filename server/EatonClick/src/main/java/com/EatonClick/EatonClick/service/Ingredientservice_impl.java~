@@ -78,12 +78,7 @@ public class Ingredientservice_impl implements Ingredientsservice {
 
     @Override
     public IngredientsItem updatestock(Long id) throws Exception {
-        Optional<IngredientsItem> optionalIngredientsItem = ingredientsItem_repo.findById(id);
-        if (optionalIngredientsItem.isPresent()) {
-            IngredientsItem ingredientsItem = optionalIngredientsItem.get();
-            ingredientsItem.setInStock(!ingredientsItem.isInStock());
-            return ingredientsItem_repo.save(ingredientsItem);
-        }
+        Optional<IngredientsItem> optionalIngredientsItem = ingredientsItem_repo.findById(id>
         return null;
     }
 }
