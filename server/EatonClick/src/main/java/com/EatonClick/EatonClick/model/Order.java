@@ -43,6 +43,6 @@ public class Order {
     //private Pay payment;
 
     private int totalItems;
-    private int totalPrice;
+    private Long totalPrice;
 
 }

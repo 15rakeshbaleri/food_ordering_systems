@@ -21,5 +21,5 @@ public interface CartService {
 
     public Cart findcartbyuserId(Long ID) throws Exception;
 
-    public Cart clearCart(Long ID) throws Exception;
+    public Cart clearCart(String jwt) throws Exception;
 }

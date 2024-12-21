@@ -6,6 +6,7 @@ import com.EatonClick.EatonClick.model.User;
 import com.EatonClick.EatonClick.request.Addcart_requst;
 import com.EatonClick.EatonClick.request.Updatecartitem_request;
 import com.EatonClick.EatonClick.service.CartService;
+import com.EatonClick.EatonClick.service.Userservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,10 @@ public class Cart_controller {
 
     @Autowired
     CartService cart_service;
+
+    @Autowired
+    Userservice userservice;
+
 
     @PutMapping("/cart/add")
     public ResponseEntity<CartItems> add_tocart(@RequestBody Addcart_requst requst,
@@ -55,8 +60,8 @@ public class Cart_controller {
     public ResponseEntity<Cart> Clear_cart(
                                                 @RequestHeader("Authorization") String jwt)
             throws Exception {
-
-        Cart item = cart_service.clearCart(jwt);
+    User user = userservice.findUserByJwttocken(jwt);
+        Cart item = cart_service.clearCart(user.getId());
 
         return new ResponseEntity<>(item, HttpStatus.OK);
     }
@@ -65,9 +70,9 @@ public class Cart_controller {
     public ResponseEntity<Cart> Get_Usercart(
             @RequestHeader("Authorization") String jwt)
             throws Exception {
+        User user = userservice.findUserByJwttocken(jwt);
 
-
-        Cart item = cart_service.findcartbyuserId(jwt);
+        Cart item = cart_service.findcartbyuserId(user.getId());
 
         return new ResponseEntity<>(item, HttpStatus.OK);
     }
