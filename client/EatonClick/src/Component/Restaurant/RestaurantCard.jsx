@@ -17,7 +17,7 @@ function RestaurantCard() {
           size="small"
           className="absolute top-2 right-2"
           color={true ? "success" : "error"}
-          lable={true ? "Open" : "Closed"}
+          label={true ? "Open" : "Closed"}
         ></Chip>
       </div>
       <div className="p-4 textPart lg:flex w-full justify-between">

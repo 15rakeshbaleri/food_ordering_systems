@@ -1,8 +1,9 @@
 import React from "react";
 import "./Home.css";
 import MultiItemCarousel from "./MultiItemCarousel";
-
+import Auth from "../Auth/Auth";
 import RestaurantCard from "../Restaurant/RestaurantCard";
+import { Key } from "@mui/icons-material";
 function Home() {
   const restu = [1, 1, 1, 1, 1, 1, 1];
   return (
@@ -31,11 +32,12 @@ function Home() {
           Order from favroite restaurants
         </h1>
         <div className="flex flex-wrap justify-around items-center gap-5">
-          {restu.map((item) => (
-            <RestaurantCard />
+          {restu.map((item, id) => (
+            <RestaurantCard key={id} />
           ))}
         </div>
       </section>
+      <Auth />
     </div>
   );
 }
