@@ -32,7 +32,7 @@ export const registerUser = (reqData) => async (dispatch) => {
     dispatch({ type: REGISTER_SUCCESS, payload: data.jwt });
     console.log(data);
   } catch (error) {
-    dispatch({ type: REGISTER_FAILURE, payload: error });
+    dispatch({ type: REGISTER_FAILURE, payload: error.message || error });
   }
 };
 
@@ -59,14 +59,14 @@ export const loginUser = (reqData) => async (dispatch) => {
 export const GETUser = (jwt) => async (dispatch) => {
   dispatch({ type: GET_USER_REQUEST });
   try {
-    const { data } = await api.get(`/auth/signin`, {
+    const { data } = await axios.get(`${API_URL}/api/users/profile`, {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
     });
+    console.log(data);
 
     dispatch({ type: GET_USER_SUCCESS, payload: data });
-    console.log(data);
   } catch (error) {
     dispatch({ type: GET_USER_FAILURE, payload: error });
   }
@@ -75,8 +75,8 @@ export const GETUser = (jwt) => async (dispatch) => {
 export const addtoFavorite = (jwt, restaurantid) => async (dispatch) => {
   dispatch({ type: ADD_TO_FAVOURITE_REQUEST });
   try {
-    const { data } = await api.put(
-      `/api/restaurant/${restaurantid}/add-favorite`,
+    const { data } = await axios.put(
+      `${API_URL}/api/restaurant/${restaurantid}/add-favorite`,
       {},
       {
         headers: {

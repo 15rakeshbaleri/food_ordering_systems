@@ -14,9 +14,12 @@ function App() {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
   const { auth } = useSelector((state) => state);
+
   useEffect(() => {
-    dispatch(GETUser(jwt || auth.jwt));
-  }, [auth.jwt]);
+    if (jwt && !auth.user) {
+      dispatch(GETUser(jwt));
+    }
+  }, [jwt, auth.user]);
 
   return (
     <ThemeProvider theme={darkTheme}>
