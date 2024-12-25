@@ -10,8 +10,8 @@ import {
   TextField,
   Button,
 } from "@mui/material";
-
-// Role constants (placeholders)
+import { useDispatch } from "react-redux";
+import { registerUser } from "../State/Authentication/Action";
 const ROLE_ADMIN = "ROLE_ADMIN";
 const ROLE_CUSTOMER = "ROLE_CUSTOMER";
 const ROLE_RESTAURANT_OWNER = "ROLE_RESTAURANT_OWNER";
@@ -25,9 +25,9 @@ function RegisterForm() {
   };
 
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const handleSubmit = (values) => {
-    console.log("Form Values: ", values); // Replace with actual submit logic
+    dispatch(registerUser({ userData: values, navigate }));
   };
 
   return (

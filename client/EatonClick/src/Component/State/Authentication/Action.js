@@ -65,10 +65,10 @@ export const GETUser = (jwt) => async (dispatch) => {
       },
     });
 
-    dispatch({ type: LOGIN_SUCCESS, payload: data });
+    dispatch({ type: GET_USER_SUCCESS, payload: data });
     console.log(data);
   } catch (error) {
-    dispatch({ type: LOGIN_FAILURE, payload: error });
+    dispatch({ type: GET_USER_FAILURE, payload: error });
   }
 };
 
@@ -94,6 +94,7 @@ export const addtoFavorite = (jwt, restaurantid) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
+    localStorage.clear();
     dispatch({ type: LOGOUT });
     console.log("logout sucessfylly");
   } catch (error) {
