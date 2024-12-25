@@ -64,6 +64,9 @@ const authReducer = (state = initialState, action) => {
         error: null,
       };
 
+    case LOGOUT:
+      return initialState;
+
     case REGISTER_FAILURE:
     case LOGIN_FAILURE:
     case GET_USER_FAILURE:

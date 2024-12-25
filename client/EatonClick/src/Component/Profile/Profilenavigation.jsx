@@ -8,7 +8,9 @@ import EventIcon from "@mui/icons-material/Event";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery, Drawer, Divider } from "@mui/material";
+import { useDispatch } from "react-redux";
 import zIndex from "@mui/material/styles/zIndex";
+import { logout } from "../State/Authentication/Action";
 
 const Profilenavigation = ({ open, handleclose }) => {
   const menu = [
@@ -24,8 +26,14 @@ const Profilenavigation = ({ open, handleclose }) => {
   const isSmallScreen = useMediaQuery("(max-width:900px)");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handlenavigate = (title) => {
-    navigate(`/my-profile/${title.toLowerCase()}`); // Corrected toLowercase to toLowerCase
+    if (title === "Logout") {
+      dispatch(logout());
+      navigate("/");
+    } else {
+      navigate(`/my-profile/${title.toLowerCase()}`);
+    }
   };
 
   return (
