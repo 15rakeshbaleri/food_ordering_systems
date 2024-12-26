@@ -30,8 +30,9 @@ import {
   CREATE_CATEGORY_FAILURE,
   GET_RESTAURANTS_CATEGORY_REQUEST,
   GET_RESTAURANTS_CATEGORY_SUCCESS,
+  DELETE_RESTAURANT_SUCCESS,
   GET_RESTAURANTS_CATEGORY_FAILURE,
-} from "./Action_type";
+} from "./ActionType";
 
 export const getAllRestaurantsaction = (token) => {
   return async (dispatch) => {
@@ -42,6 +43,7 @@ export const getAllRestaurantsaction = (token) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("data", data);
       dispatch({ type: GET_ALL_RESTAURANT_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: GET_ALL_RESTAURANT_FAILURE, payload: error });

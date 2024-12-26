@@ -49,7 +49,8 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        user: action.payload, // Ensure user data is updated here
+        user: action.payload,
+        favorites: action.payload.favorites,
         error: null,
       };
 

@@ -72,11 +72,11 @@ export const GETUser = (jwt) => async (dispatch) => {
   }
 };
 
-export const addtoFavorite = (jwt, restaurantid) => async (dispatch) => {
+export const addtoFavorite = (jwt, restaurantId) => async (dispatch) => {
   dispatch({ type: ADD_TO_FAVOURITE_REQUEST });
   try {
     const { data } = await axios.put(
-      `${API_URL}/api/restaurant/${restaurantid}/add-favorite`,
+      `${API_URL}/api/restaurants/${restaurantId}/add-favorite`,
       {},
       {
         headers: {
@@ -84,9 +84,8 @@ export const addtoFavorite = (jwt, restaurantid) => async (dispatch) => {
         },
       }
     );
-
-    dispatch({ type: ADD_TO_FAVOURITE_SUCCESS, payload: data });
     console.log(data);
+    dispatch({ type: ADD_TO_FAVOURITE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ADD_TO_FAVOURITE_FAILURE, payload: error });
   }
