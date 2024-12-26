@@ -92,17 +92,17 @@ export const clearCart = () => {
   return async (dispatch) => {
     dispatch({ type: CLEAR_CART_REQUEST });
     try {
-      const {data} = await api.put(
+      const { data } = await api.put(
         `/api/cart/clear`,
         {},
-        { headers = {
+        {
+          headers: {
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
           },
         }
       );
-      
 
-      dispatch({ type: CLEAR_CART_SUCCESS, payload: res.data });
+      dispatch({ type: CLEAR_CART_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: CLEAR_CART_FAILURE, payload: error.message });
     }
