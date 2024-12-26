@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Divider,
   FormControl,
@@ -11,30 +11,30 @@ import {
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import MenuCard from "./MenuCard";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getRestaurantById } from "../../Component/State/Restaurant/Action";
+
 function Resturant_details() {
-  const foodcategory = ["pizza", "burger", "pasta", "chinese", "italian"];
-  const foodtypes = [
-    { label: "Veg", value: "veg" },
-    { label: "Non-Veg", value: "nonveg" },
-    { label: "All", value: "all" },
-    { label: "Seasonal", value: "seasonal" },
-  ];
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const { auth, restaurant } = useSelector((state) => state);
 
-  const menu = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-
-  const [foodtype, setFoodtype] = React.useState("all");
-  const [foodcategoryFilter, setFoodcategoryFilter] = React.useState("");
+  const { id, title, city } = useParams();
 
   const handleFilter = (e) => {
-    const { name, value } = e.target;
-    if (name === "food_type") setFoodtype(value);
-    if (name === "food_category") setFoodcategoryFilter(value);
-    console.log(name, value);
+    console.log(e.target.value);
   };
+
+  console.log("restaurant", restaurant);
+  useEffect(() => {
+    dispatch(getRestaurantById({ jwt, restaurantById: id }));
+  }, []);
 
   return (
     <>
-      <div className="px-5 lg:px-20">
+      {/* <div className="px-5 lg:px-20">
         <section>
           <h3 className="text-gray-500 py-2 mt-10">
             Home / Country / Restaurant / r_id
@@ -139,7 +139,7 @@ function Resturant_details() {
             ))}
           </div>
         </section>
-      </div>
+      </div> */}
     </>
   );
 }

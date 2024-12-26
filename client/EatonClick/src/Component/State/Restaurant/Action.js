@@ -59,7 +59,7 @@ export const getRestaurantById = (reqData) => {
         `/api/restaurants/${reqData.restaurantById}`,
         {
           headers: {
-            Authorization: `Bearer ${reqData.token}`,
+            Authorization: `Bearer ${reqData.jwt}`,
           },
         }
       );

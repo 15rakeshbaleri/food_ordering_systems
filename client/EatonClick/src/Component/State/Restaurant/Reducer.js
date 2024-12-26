@@ -65,8 +65,6 @@ const restaurantReducer = (state = initialState, action) => {
 
     case GET_RESTAURANT_BY_ID_SUCCESS:
       return { ...state, loading: false, restaurants: action.payload };
-    case GET_RESTAURANT_BY_ID_SUCCESS:
-      return { ...state, loading: false, restaurants: action.payload };
 
     case GET_RESTAURANT_BY_USER_ID_SUCCESS:
     case UPDATE_RESTAURANT_STATUS_SUCCESS:

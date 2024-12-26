@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllRestaurantsaction } from "../State/Restaurant/Action";
 function Home() {
-  // const restu = [1, 1, 1, 1, 1, 1, 1];
-
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
   const { restaurant } = useSelector((state) => state);
