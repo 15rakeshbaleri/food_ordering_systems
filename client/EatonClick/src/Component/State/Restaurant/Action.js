@@ -253,6 +253,7 @@ export const getRestaurantCategory = ({ restaurantId, jwt }) => {
           Authorization: `Bearer ${jwt}`,
         },
       });
+      console.log("category", res.data);
       dispatch({
         type: GET_RESTAURANTS_CATEGORY_SUCCESS,
         payload: res.data,

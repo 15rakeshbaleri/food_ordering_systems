@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
+
 @RequestMapping("/api/admin/restaurants")
 @RestController
 public class AdminResturant_countroller {

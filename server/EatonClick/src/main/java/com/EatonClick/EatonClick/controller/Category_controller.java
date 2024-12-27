@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@CrossOrigin
 
 @RestController
 @RequestMapping("/api")
@@ -30,13 +31,12 @@ public class Category_controller {
         return new ResponseEntity<>(createcategory, HttpStatus.CREATED);
     }
 
-    @GetMapping("/category/restaurant")
-    public ResponseEntity<List<Category> > getResturantCategory(
+    @GetMapping("/category/restaurant/{id}")
+    public ResponseEntity<List<Category> > getResturantCategory(@PathVariable Long id ,
                                                    @RequestHeader("Authorization") String jwt) throws Exception {
 
-        User user = userservice.findUserByJwttocken(jwt);
-        List<Category> createcategory = catagory_service.findCategoryByResturentId( user.getId());
-        return new ResponseEntity<>(createcategory, HttpStatus.CREATED);
+        List<Category> createcategory = catagory_service.findCategoryByResturentId(id);
+        return new ResponseEntity<>(createcategory, HttpStatus.OK);
     }
 
 }

@@ -25,11 +25,12 @@ function RestaurantCard({ item }) {
   };
 
   return (
-    <Card onClick={handlenavigate_to_restaurant} className=" w-[18rem]">
+    <Card className=" w-[18rem]">
       <div
         className={`${true ? "cursor-pointer" : "cursor-not-allowed"} relative`}
       >
         <img
+          onClick={handlenavigate_to_restaurant}
           src={item.images[0]}
           alt=""
           className="w-full h-[10rem] rounded-t-md object-cover"
@@ -42,7 +43,7 @@ function RestaurantCard({ item }) {
         ></Chip>
       </div>
       <div
-        onClick={handlenavigate_to_restaurant}
+        // onClick={handlenavigate_to_restaurant}
         className="p-4 cursor-pointer textPart lg:flex w-full justify-between"
       >
         <div className="space-y-1">

@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
+
 @RestController
 @RequestMapping("/api/admin/food")
 public class AdminFood_controller {
