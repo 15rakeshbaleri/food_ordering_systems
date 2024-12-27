@@ -1,5 +1,4 @@
-import api from "../../../Component/config/api";
-
+import { api } from "../../config/api";
 import {
   CREATE_MENU_ITEM_REQUEST,
   CREATE_MENU_ITEM_SUCCESS,
@@ -16,7 +15,7 @@ import {
   UPDATE_MENU_ITEMS_AVAILABILITY_REQUEST,
   UPDATE_MENU_ITEMS_AVAILABILITY_SUCCESS,
   UPDATE_MENU_ITEMS_AVAILABILITY_FAILURE,
-} from "./Action_type";
+} from "./ActionType";
 
 export const createMenuItemRequest = ({ menu, jwt }) => {
   return async (dispatch) => {
@@ -39,7 +38,7 @@ export const getMenu_Itemsby_RestaurantID = ({ reqData }) => {
     dispatch({ type: GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST });
     try {
       const { data } = await api.get(
-        `/api/food/restaurant/${reqData.restaurant_id}?vegetarian=${reqData.vegetarian}&nonveg=${reqData.nonveg}&seasonal=${reqData.seasonal}&food_category=${reqData.foodcategory}`,
+        `/api/food/restaurant/${reqData.restaurantId}?vegetarian=${reqData.vegetarian}&nonveg=${reqData.nonveg}&seasonal=${reqData.seasonal}&food_category=${reqData.foodcategory}`,
 
         {
           headers: {
@@ -47,11 +46,13 @@ export const getMenu_Itemsby_RestaurantID = ({ reqData }) => {
           },
         }
       );
+      console.log("data in action", data);
       dispatch({
         type: GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS,
-        payload: menu,
+        payload: data,
       });
     } catch (error) {
+      console.log("error", error);
       dispatch({
         type: GET_MENU_ITEMS_BY_RESTAURANT_ID_FAILURE,
         payload: error,

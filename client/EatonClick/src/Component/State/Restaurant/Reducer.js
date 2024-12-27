@@ -1,3 +1,4 @@
+import e from "cors";
 import {
   GET_ALL_RESTAURANT_REQUEST,
   GET_ALL_RESTAURANT_SUCCESS,
@@ -33,6 +34,7 @@ import {
   GET_RESTAURANT_BY_USER_ID_SUCCESS,
   UPDATE_RESTAURANT_SUCCESS,
   DELETE_RESTAURANT_SUCCESS,
+  GET_RESTAURANT_EVENT_SUCCESS,
 } from "./ActionType";
 
 const initialState = {
@@ -58,18 +60,18 @@ const restaurantReducer = (state = initialState, action) => {
       return { ...state, loading: true, error: null };
 
     case CREATE_RESTAURANT_SUCCESS:
-      return { ...state, loading: false, Restaurants: action.payload };
+      return { ...state, loading: false, usersRestaurants: action.payload };
 
     case GET_ALL_RESTAURANT_SUCCESS:
       return { ...state, loading: false, restaurants: action.payload };
 
     case GET_RESTAURANT_BY_ID_SUCCESS:
-      return { ...state, loading: false, restaurants: action.payload };
+      return { ...state, loading: false, restaurant: action.payload };
 
     case GET_RESTAURANT_BY_USER_ID_SUCCESS:
     case UPDATE_RESTAURANT_STATUS_SUCCESS:
     case UPDATE_RESTAURANT_SUCCESS:
-      return { ...state, loading: false, Restaurants: action.payload };
+      return { ...state, loading: false, usersRestaurants: action.payload };
 
     case DELETE_RESTAURANT_SUCCESS:
       return {
@@ -93,8 +95,10 @@ const restaurantReducer = (state = initialState, action) => {
       };
 
     case GET_ALL_EVENTS_SUCCESS:
-      return { ...state, loading: false, restaurantsEvents: action.payload };
+      return { ...state, loading: false, events: action.payload };
 
+    case GET_RESTAURANT_EVENT_SUCCESS:
+      return { ...state, loading: false, restaurantsEvents: action.payload };
     case DELETE_EVENT_SUCCESS:
       return {
         ...state,

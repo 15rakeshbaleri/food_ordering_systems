@@ -63,8 +63,10 @@ export const getRestaurantById = (reqData) => {
           },
         }
       );
+      console.log("response", response.data);
       dispatch({ type: GET_RESTAURANT_BY_ID_SUCCESS, payload: response.data });
     } catch (error) {
+      console.log("error", error);
       dispatch({ type: GET_RESTAURANT_BY_ID_FAILURE, payload: error });
     }
   };

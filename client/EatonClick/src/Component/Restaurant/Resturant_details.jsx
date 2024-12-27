@@ -17,7 +17,7 @@ import {
   getRestaurantById,
   getRestaurantCategory,
 } from "../../Component/State/Restaurant/Action";
-
+import { getMenu_Itemsby_RestaurantID } from "../../Component/State/Menu/Action";
 function Resturant_details() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,34 +30,47 @@ function Resturant_details() {
     console.log(e.target.value);
   };
 
-  console.log("restaurant", restaurant);
   useEffect(() => {
     dispatch(getRestaurantById({ jwt, restaurantById: id }));
     dispatch(getRestaurantCategory({ restaurantId: id, jwt }));
+    dispatch(
+      getMenu_Itemsby_RestaurantID({
+        jwt,
+        restaurant_id: id,
+        vegetarian: true,
+        nonveg: false,
+        seasonal: false,
+      })
+    );
   }, []);
+
+  console.log("restaurant", restaurant);
+  if (!restaurant || !restaurant.restaurant) {
+    return <div>Loading or no restaurant data available...</div>;
+  }
 
   return (
     <>
-      <div className="px-5 lg:px-20">
+      <div className="px-0 lg:px-20">
         <section>
-          <h3 className="text-gray-500 py-2 mt-10">
+          <h3 className="text-gray-500 py-2 mt-0  ">
             Home / Country / Restaurant / r_id
           </h3>
-          <div className="pt-3 pb-5">
+          <div className="pt-3 pb-5 mb-5">
             <h1 className="text-4xl font-semibold">
-              {restaurant.restaurants.name}
+              {restaurant.restaurant.name}
             </h1>
-            <p className="text-gray-500 mt-1">
-              {restaurant.restaurants.description}
+            <p className="text-gray-500 mt-3">
+              {restaurant.restaurant.description}
             </p>
             <div className="space-y-3 mt-3">
               <p className="text-gray-500 flex items-center gap-3">
                 <LocationOnIcon />
-                <span>{`${restaurant.restaurants.address.streetAddress},${restaurant.restaurants.address.city},${restaurant.restaurants.stateProvince}`}</span>
+                <span>{`${restaurant.restaurant.address.streetAddress},${restaurant.restaurant.address.city},${restaurant.restaurant.stateProvince}`}</span>
               </p>
               <p className="text-gray-500 flex items-center gap-3">
                 <CalendarTodayIcon />
-                <span>{restaurant.restaurants.openingHours}</span>
+                <span>{restaurant.restaurant.openingHours}</span>
               </p>
             </div>
           </div>
@@ -66,14 +79,14 @@ function Resturant_details() {
               <Grid item xs={10} lg={6}>
                 <img
                   className="w-full h-[20rem]"
-                  src={restaurant.restaurants.images[0]}
+                  src={restaurant.restaurant.images[0]}
                   alt="Restaurant Banner"
                 />
               </Grid>
               <Grid item xs={10} lg={6}>
                 <img
                   className="w-full h-[20rem]"
-                  src={restaurant.restaurants.images[1]}
+                  src={restaurant.restaurant.images[1]}
                   alt="Dish"
                 />
               </Grid>
