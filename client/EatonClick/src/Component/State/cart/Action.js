@@ -19,16 +19,21 @@ import {
   REMOVE_CARTITEM_REQUEST,
   REMOVE_CARTITEM_SUCCESS,
   REMOVE_CARTITEM_FAILURE,
-} from "./Action_type";
+} from "./ActionTypes";
 
 export const findCart = (jwt) => {
   return async (dispatch) => {
     dispatch({ type: FIND_CART_REQUEST });
     try {
-      const headers = { Authorization: `Bearer ${jwt}` };
-      const res = await api.get("/api/cart/", { headers });
+      const res = await api.get("/api/cart", {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      console.log("Cart Data:", res.data);
       dispatch({ type: FIND_CART_SUCCESS, payload: res.data });
     } catch (error) {
+      console.log("error", error);
       dispatch({ type: FIND_CART_FAILURE, payload: error.message });
     }
   };
@@ -47,14 +52,19 @@ export const getAllCartItems = ({ cartId, jwt }) => {
   };
 };
 
-export const addItemToCart = ({ cartId, jwt }) => {
+export const addItemToCart = (reqData) => {
   return async (dispatch) => {
     dispatch({ type: ADD_ITEM_TO_CART_REQUEST });
     try {
-      const headers = { Authorization: `Bearer ${jwt}` };
-      const { data } = await api.post("/api/cart/add", { cartId }, { headers });
+      const { data } = await api.put("/api/cart/add", reqData.cartitems, {
+        headers: {
+          Authorization: `Bearer ${reqData.jwt}`,
+        },
+      });
+      console.log("Request Data:", data);
       dispatch({ type: ADD_ITEM_TO_CART_SUCCESS, payload: data });
     } catch (error) {
+      console.log("error", error);
       dispatch({ type: ADD_ITEM_TO_CART_FAILURE, payload: error.message });
     }
   };

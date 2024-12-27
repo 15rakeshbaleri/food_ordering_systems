@@ -120,7 +120,7 @@ function Resturant_details() {
                 <RadioGroup
                   name="food_type"
                   value={foodtype}
-                  onChange={handleFilter}
+                  onChange={handleFiltercategory}
                 >
                   {foodtypes.map((item) => (
                     <FormControlLabel

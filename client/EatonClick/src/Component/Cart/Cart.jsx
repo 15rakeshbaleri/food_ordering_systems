@@ -15,9 +15,11 @@ import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 import * as Yup from "yup";
 import { ErrorMessage, Field } from "formik";
 import { Formik, Form } from "formik";
-
+import { useDispatch, useSelector } from "react-redux";
 function Cart() {
   const cartitems = [1, 1];
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   const initialValues = {
     streetAddress: "",
@@ -87,8 +89,8 @@ function Cart() {
         <Divider orientation="vertical" flexItem />
 
         <section className="lg:w-[30%] space-y-6 lg:min-h-screen pt-5">
-          {cartitems.map((item, index) => (
-            <CartItem key={index} />
+          {cart.cart?.items.map((item) => (
+            <CartItem key={item.id} item={item} />
           ))}
           <Divider />
           <div className="billdetails px-5 text-sm">

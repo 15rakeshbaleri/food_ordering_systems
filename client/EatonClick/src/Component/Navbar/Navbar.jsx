@@ -9,8 +9,9 @@ import { orange } from "@mui/material/colors";
 import "./Navbar.css";
 
 function Navbar() {
-  const auth = useSelector((state) => state.auth);
+  const { auth, cart } = useSelector((state) => state);
   const navigate = useNavigate();
+
   const handle_avatarclicked = () => {
     if (auth.user?.role === "ROLE_RESTAURANT_OWNER") {
       navigate("/admin/restaurant");
@@ -18,19 +19,20 @@ function Navbar() {
       navigate("/my-profile");
     }
   };
+
   return (
-    <Box className="px-5 sticky top-0 z-50 py-[.8rem] bg-black lg:px-20 flex justify-between">
+    <Box className="px-4 lg:px-20 sticky top-0 z-50 py-2 bg-black flex justify-between">
       <div className="flex items-center cursor-pointer space-x-4">
-        <li
+        <span
           onClick={() => navigate("/")}
           className="logo font-semibold text-gray-300 text-2xl"
         >
           EatonClick
-        </li>
+        </span>
       </div>
       <div className="flex items-center space-x-2 lg:space-x-10">
         <div className="flex items-center space-x-2">
-          <IconButton>
+          <IconButton aria-label="Search">
             <SearchIcon sx={{ fontSize: "1.5rem" }} />
           </IconButton>
         </div>
@@ -39,18 +41,28 @@ function Navbar() {
             <Avatar
               onClick={handle_avatarclicked}
               sx={{ bgcolor: orange.A400, color: "white" }}
+              aria-label="User Profile"
             >
-              {auth.user?.fullname[0]?.toUpperCase()}
+              {auth.user?.fullname?.[0]?.toUpperCase() || "?"}
             </Avatar>
           ) : (
-            <IconButton onClick={() => navigate("/account/login")}>
+            <IconButton
+              onClick={() => navigate("/account/login")}
+              aria-label="Login"
+            >
               <PersonIcon />
             </IconButton>
           )}
         </div>
         <div>
-          <IconButton>
-            <Badge badgeContent={4} color="white">
+          <IconButton
+            aria-label="Shopping Cart"
+            onClick={() => navigate("/cart")}
+          >
+            <Badge
+              badgeContent={cart?.cart?.items?.length || 0}
+              color="primary"
+            >
               <ShoppingCartIcon sx={{ fontSize: "1.5rem" }} />
             </Badge>
           </IconButton>

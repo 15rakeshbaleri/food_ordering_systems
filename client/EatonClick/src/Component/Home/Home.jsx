@@ -7,6 +7,7 @@ import { Key } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllRestaurantsaction } from "../State/Restaurant/Action";
+
 function Home() {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
