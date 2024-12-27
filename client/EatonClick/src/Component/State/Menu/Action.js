@@ -33,20 +33,19 @@ export const createMenuItemRequest = ({ menu, jwt }) => {
   };
 };
 
-export const getMenu_Itemsby_RestaurantID = ({ reqData }) => {
+export const getMenu_Itemsby_RestaurantID = (reqData) => {
   return async (dispatch) => {
     dispatch({ type: GET_MENU_ITEMS_BY_RESTAURANT_ID_REQUEST });
     try {
       const { data } = await api.get(
-        `/api/food/restaurant/${reqData.restaurantId}?vegetarian=${reqData.vegetarian}&nonveg=${reqData.nonveg}&seasonal=${reqData.seasonal}&food_category=${reqData.foodcategory}`,
-
+        `/api/food/resturant/${reqData.resturantid}?Veg=${reqData.Veg}&NonVeg=${reqData.NonVeg}&seasonal=${reqData.seasonal}&category=${reqData.category}`,
         {
           headers: {
             Authorization: `Bearer ${reqData.jwt}`,
           },
         }
       );
-      console.log("data in action", data);
+      console.log("menu item", data);
       dispatch({
         type: GET_MENU_ITEMS_BY_RESTAURANT_ID_SUCCESS,
         payload: data,
