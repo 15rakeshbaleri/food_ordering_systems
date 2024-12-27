@@ -43,9 +43,9 @@ public class Food_controller {
 
 
     @GetMapping("/resturant/{resturantid}")
-    public ResponseEntity<List<Food>> GetResturantFood(@RequestParam boolean Veg,
-                                                       @RequestParam boolean NonVeg,
-                                                       @RequestParam boolean seasonal,
+    public ResponseEntity<List<Food>> GetResturantFood(@RequestParam(required = false) boolean Veg,
+                                                       @RequestParam(required = false) boolean NonVeg,
+                                                       @RequestParam(required = false) boolean seasonal,
                                                        @PathVariable Long resturantid,
                                                  @RequestParam(required = false) String category,
                                                  @RequestHeader("Authorization") String jwt) throws Exception {
@@ -53,6 +53,6 @@ public class Food_controller {
         User user = userservice.findUserByJwttocken(jwt);
        List<Food> foods = food_service.getRestaurantFoods(resturantid,Veg, seasonal,NonVeg, category);
 
-        return  new ResponseEntity<>(foods, HttpStatus.CREATED);
+        return  new ResponseEntity<>(foods, HttpStatus.OK);
     }
 }

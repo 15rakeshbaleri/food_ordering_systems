@@ -9,6 +9,7 @@ import com.EatonClick.EatonClick.request.CreateFoodreq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -34,7 +35,7 @@ public class Foodservice_impl implements Food_service {
         food.setVegetarian(createFoodreq.isVegetarian());
         food.setSeasonal(createFoodreq.isSeasonal());
         food.setIngredients(createFoodreq.getIngredients());
-
+    food.setCreationDate(new Date());
         Food save = food_repo.save(food);
         restaurant.getFoods().add(save);
         return save;

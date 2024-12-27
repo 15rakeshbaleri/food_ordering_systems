@@ -50,7 +50,7 @@ public class AdminFood_controller {
             food_service.deleteFood(id);
         Message_response res=new Message_response();
         res.setMessage("Food deleted successfully");
-        return new ResponseEntity<>(res, HttpStatus.CREATED);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
 
