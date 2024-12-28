@@ -16,6 +16,7 @@ function CartItem({ item }) {
   const handleupdateitem = (value) => {
     if (value === -1 && item.quantity === 1) {
       handleremovecartitem();
+      window.location.reload("true");
     }
     const data = {
       cartid: item.id,

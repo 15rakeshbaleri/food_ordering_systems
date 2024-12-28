@@ -14,10 +14,11 @@ import {
 export const createorder = (reqData) => {
   return async (dispatch) => {
     dispatch({ type: CREATE_ORDER_REQUEST });
-
+    console.log("reqData", reqData.data.order);
+    console.log("jwt", reqData.data.jwt);
     try {
-      const { data } = await api.post("/api/order", reqData.order, {
-        headers: { Authorization: `Bearer ${reqData.jwt}` },
+      const { data } = await api.post("/api/order", reqData.data.order, {
+        headers: { Authorization: `Bearer ${reqData.data.jwt}` },
       });
 
       // if(data.paymenturl){
@@ -26,7 +27,7 @@ export const createorder = (reqData) => {
       console.log("create order data", data);
       dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
     } catch (error) {
-      console.log("error", error.message);
+      console.log("error", error);
       dispatch({ type: CREATE_ORDER_FAILURE, payload: error.message });
     }
   };
