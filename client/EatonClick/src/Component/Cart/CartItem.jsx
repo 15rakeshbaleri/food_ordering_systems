@@ -3,16 +3,31 @@ import React from "react";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useSelector } from "react-redux";
-import { useNavigate, useDispatch } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { removeCartItem, updatecartitem } from "../State/cart/Action";
 function CartItem({ item }) {
-  const { auth, cart } = useSelector((state) => state);
+  const { auth, Cart } = useSelector((state) => state);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleremoveitem = () => {};
-  const handleadditem = () => {};
+  const jwt = localStorage.getItem("jwt");
+  const handleupdateitem = (value) => {
+    if (value === -1 && item.quantity === 1) {
+      handleremovecartitem();
+    }
+    const data = {
+      cartid: item.id,
+      quantity: item.quantity + value,
+    };
+
+    dispatch(updatecartitem({ data, jwt }));
+  };
+  const handleremovecartitem = () => {
+    dispatch(removeCartItem({ cartid: item.id, jwt: auth.jwt || jwt }));
+  };
+
   return (
     <div className="px-5">
       <div className="lg:flex items-center lg:space-x-5">
@@ -28,13 +43,13 @@ function CartItem({ item }) {
             <p>{item.food.name}</p>
             <div className="flex  justify-between items-center">
               <div className="flex items-center space-x-1">
-                <IconButton onClick={handleremoveitem}>
+                <IconButton onClick={() => handleupdateitem(-1)}>
                   <RemoveCircleOutlineIcon />
                 </IconButton>
                 <div className="w-5 h-5 text-xs flex items-center justify-center">
                   {item.quantity}
                 </div>
-                <IconButton onClick={handleadditem}>
+                <IconButton onClick={() => handleupdateitem(+1)}>
                   <AddCircleOutlineIcon />
                 </IconButton>
               </div>
@@ -45,7 +60,7 @@ function CartItem({ item }) {
       </div>
       <div className="pt-3 space-x-2">
         {item.ingredients.map((ing_item) => (
-          <Chip label={ing_item} />
+          <Chip label={ing_item} key={ing_item.id} />
         ))}
       </div>
     </div>

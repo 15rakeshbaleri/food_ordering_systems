@@ -41,7 +41,7 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         cart: action.payload,
-        cartItems: action.payload.cartItems,
+        cartItems: action.payload.items,
       };
 
     case ADD_ITEM_TO_CART_SUCCESS:
@@ -56,9 +56,10 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         cartItems: state.cartItems.map((item) =>
-          item._id === action.payload._id ? action.payload : item
+          item.id === action.payload.id ? action.payload : item
         ),
       };
+
     case REMOVE_CARTITEM_SUCCESS:
       return {
         ...state,

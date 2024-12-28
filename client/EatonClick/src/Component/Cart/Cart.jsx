@@ -16,9 +16,9 @@ import * as Yup from "yup";
 import { ErrorMessage, Field } from "formik";
 import { Formik, Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
+
 function Cart() {
-  const cartitems = [1, 1];
-  const cart = useSelector((state) => state.cart);
+  const Cart = useSelector((state) => state.Cart);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -89,9 +89,10 @@ function Cart() {
         <Divider orientation="vertical" flexItem />
 
         <section className="lg:w-[30%] space-y-6 lg:min-h-screen pt-5">
-          {cart.cart?.items.map((item) => (
-            <CartItem key={item.id} item={item} />
+          {Cart.cartItems.map((item) => (
+            <CartItem item={item} key={item.id} />
           ))}
+
           <Divider />
           <div className="billdetails px-5 text-sm">
             <p className="font-extralight py-5">Bill details</p>

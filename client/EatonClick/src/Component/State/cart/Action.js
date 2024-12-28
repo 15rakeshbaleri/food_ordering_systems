@@ -70,29 +70,35 @@ export const addItemToCart = (reqData) => {
   };
 };
 
-export const updateCartItem = ({ data, jwt }) => {
+export const updatecartitem = ({ data, jwt }) => {
   return async (dispatch) => {
     dispatch({ type: UPDATE_CARTITEM_REQUEST });
     try {
-      const headers = { Authorization: `Bearer ${jwt}` };
-      const res = await api.put("/api/cart-item/update", data, { headers });
+      const res = await api.put("/api/cart-item/update", data, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      console.log("Update Cart Item:", res.data);
       dispatch({ type: UPDATE_CARTITEM_SUCCESS, payload: res.data });
     } catch (error) {
+      console.log("error", error);
       dispatch({ type: UPDATE_CARTITEM_FAILURE, payload: error.message });
     }
   };
 };
 
-export const removeCartItem = ({ cartId, jwt }) => {
+export const removeCartItem = ({ cartid, jwt }) => {
   return async (dispatch) => {
     dispatch({ type: REMOVE_CARTITEM_REQUEST });
     try {
       const headers = { Authorization: `Bearer ${jwt}` };
-      const res = await api.delete(`/api/cart-item/${cartId}/remove`, {
+      const res = await api.delete(`api/cart-item/${cartid}/remove`, {
         headers,
       });
       dispatch({ type: REMOVE_CARTITEM_SUCCESS, payload: res.data });
     } catch (error) {
+      console.log("error", error);
       dispatch({ type: REMOVE_CARTITEM_FAILURE, payload: error.message });
     }
   };

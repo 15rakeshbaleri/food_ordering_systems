@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   restaurant: restaurantReducer,
   menu: menuReducer,
-  cart: cartReducer,
+  Cart: cartReducer,
   order: orderReducer,
   restaurantorder: restaurantorderReducer,
   ingredient: ingredientReducer,
