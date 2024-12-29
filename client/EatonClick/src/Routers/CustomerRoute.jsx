@@ -5,6 +5,8 @@ import Home from "../Component/Home/Home";
 import Resturant_details from "../Component/Restaurant/Resturant_details";
 import Cart from "../Component/Cart/Cart";
 import Profile from "../Component/Profile/Profile";
+import Paymentsuccess from "../Component/payment/Paymentsuccess";
+import PaymentFailure from "../Component/payment/PaymentFailure";
 function CustomerRoute() {
   return (
     <div>
@@ -18,6 +20,8 @@ function CustomerRoute() {
         />
         <Route path="/cart" element={<Cart />} />
         <Route path="/my-profile/*" element={<Profile />} />
+        <Route path="/payment/success/:id" element={<Paymentsuccess />} />
+        <Route path="/payment/failure" element={<PaymentFailure />} />
       </Routes>
     </div>
   );

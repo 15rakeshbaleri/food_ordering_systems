@@ -21,9 +21,10 @@ export const createorder = (reqData) => {
         headers: { Authorization: `Bearer ${reqData.data.jwt}` },
       });
 
-      // if(data.paymenturl){
-      //  window.location.href=data.paymenturl;
-      // }
+      if (data.paymenturl) {
+        console.log("payment url", data.paymenturl);
+        window.location.href = data.paymenturl;
+      }
       console.log("create order data", data);
       dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
     } catch (error) {
