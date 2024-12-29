@@ -32,19 +32,19 @@ export const createorder = (reqData) => {
     }
   };
 };
-export const getUserOrders = (jwt) => {
+export const getUserOrders = ({ jwt }) => {
   return async (dispatch) => {
     dispatch({ type: GET_USERS_ORDERS_REQUEST });
 
     try {
-      const { data } = await api.post("/api/order/user", {
+      const { data } = await api.get("/api/order/user", {
         headers: { Authorization: `Bearer ${jwt}` },
       });
 
       console.log("user order ", data);
       dispatch({ type: GET_USERS_ORDERS_SUCCESS, payload: data });
     } catch (error) {
-      console.log("error", error.message);
+      console.log("error", error);
       dispatch({ type: GET_USERS_ORDERS_FAILURE, payload: error.message });
     }
   };
