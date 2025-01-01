@@ -2,12 +2,7 @@ import { darkTheme } from "./Theme/Darktheme";
 import React, { useEffect } from "react";
 import "./App.css";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import Navbar from "./Component/Navbar/Navbar";
-import Home from "./Component/Home/Home";
-import Cart from "./Component/Cart/Cart";
-import Resturant_details from "./Component/Restaurant/Resturant_details";
-import Profile from "./Component/Profile/Profile";
-import CustomerRoute from "./Routers/CustomerRoute";
+import Routers from "./Routers/Routers";
 import { GETUser } from "./Component/State/Authentication/Action";
 import { useSelector, useDispatch } from "react-redux";
 import { findCart } from "./Component/State/cart/Action";
@@ -26,12 +21,7 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      {/* <Navbar />
-      <Home />
-      <Resturant_details />
-      <Cart />
-      <Profile /> */}
-      <CustomerRoute />
+      <Routers />
     </ThemeProvider>
   );
 }
