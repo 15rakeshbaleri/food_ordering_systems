@@ -14,8 +14,13 @@ import {
 import IconButton from "@mui/material/IconButton";
 import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 const orders = [1, 1, 1, 1];
 const Menutable = () => {
+  const navigate = useNavigate();
+  const createmenu = () => {
+    navigate("/admin/restaurants/addmenu");
+  };
   return (
     <div>
       <Box>
@@ -24,7 +29,7 @@ const Menutable = () => {
             title={"Menu"}
             sx={{ pt: 2, alignItems: "center" }}
             action={
-              <IconButton aria-label="settings">
+              <IconButton onClick={createmenu} aria-label="settings">
                 <CreateIcon />
               </IconButton>
             }

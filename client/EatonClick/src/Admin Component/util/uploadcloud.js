@@ -1,6 +1,7 @@
 const upload_preset = "eatonclick";
 const cloud_name = "dkxndlbpq";
 
+// Assuming the function is in 'cloudinary.js'
 export const uploadImagetoCloudnary = async (file) => {
   const data = new FormData();
   data.append("file", file);

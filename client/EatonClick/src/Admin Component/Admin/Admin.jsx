@@ -7,8 +7,9 @@ import Menu from "../Menu/Menu";
 import Foodcategory from "../Food_categor/Foodcategory";
 import Ingredients from "../Ingredients/Ingregients";
 import Events from "../Events/Events";
+import CreateMenuform from "../Menu/CreateMenuform";
 import Details from "../details/Details";
-
+import CreateFoodcategory from "../Food_categor/CreateFoodcategory";
 function Admin() {
   const handleClose = () => {};
 
@@ -24,6 +25,8 @@ function Admin() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/category" element={<Foodcategory />} />
+          <Route path="/createcategory" element={<CreateFoodcategory />} />
+          <Route path="/addmenu" element={<CreateMenuform />} />
           <Route path="/ingredients" element={<Ingredients />} />
           <Route path="/events" element={<Events />} />
           <Route path="/details" element={<Details />} />

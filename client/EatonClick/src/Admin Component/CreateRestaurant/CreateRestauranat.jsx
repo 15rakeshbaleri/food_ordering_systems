@@ -5,7 +5,8 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CloseIcon from "@mui/icons-material/Close";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
-import { Box } from "@mui/material";
+import { uploadImagetoCloudnary } from "../util/uploadcloud";
+
 function CreateRestaurant() {
   const initialValues = {
     name: "",
@@ -32,13 +33,19 @@ function CreateRestaurant() {
     console.log("Form data:", values);
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     setUploadImage(true);
-    const image = uploadImagetoCloudnary(file);
+    const image = await uploadImagetoCloudnary(file);
+    formik.setFieldValue("images", [...formik.values.images, image]);
+    setUploadImage(false);
   };
 
-  const handleremoveimg = (index) => {};
+  const handleremoveimg = (index) => {
+    const updatedimages = [...formik.values.images];
+    updatedimages.splice(index, 1);
+    formik.setFieldValue("images", updatedimages);
+  };
 
   const formik = useFormik({
     initialValues,
@@ -100,7 +107,7 @@ function CreateRestaurant() {
                   <div key={index} className="relative">
                     <img
                       className="w-24 h-24"
-                      src={image.url}
+                      src={image}
                       alt={`Uploaded ${index}`}
                     />
                     <IconButton
@@ -138,6 +145,17 @@ function CreateRestaurant() {
                 name="description"
                 id="description"
                 value={formik.values.description}
+                onChange={formik.handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <TextField
+                fullWidth
+                label="streetAddress"
+                variant="outlined"
+                name="streetAddress"
+                id="streetAddress"
+                value={formik.values.streetAddress}
                 onChange={formik.handleChange}
               />
             </Grid>
@@ -222,11 +240,11 @@ function CreateRestaurant() {
             <Grid item xs={12} lg={6}>
               <TextField
                 fullWidth
-                label="Mobile"
+                label="phone"
                 variant="outlined"
-                name="mobile"
-                id="mobile"
-                value={formik.values.mobile}
+                name="phone"
+                id="phone"
+                value={formik.values.phone}
                 onChange={formik.handleChange}
               />
             </Grid>

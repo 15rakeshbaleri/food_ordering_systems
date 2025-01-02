@@ -8,7 +8,7 @@ function Adminroutes() {
       <Routes>
         <Route
           path="/*"
-          element={true ? <CreateRestaurantForm /> : <Admin />}
+          element={false ? <CreateRestaurantForm /> : <Admin />}
         ></Route>
       </Routes>
     </div>
