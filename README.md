@@ -10,7 +10,7 @@
 - **Backend:** Spring Boot
 - **Frontend:** React
 - **Styling:** Tailwind CSS, Material UI
-- **Database:** MongoDB
+- **Database:** MySQL
 - **State Management:** Redux
 
 ---
@@ -37,3 +37,31 @@ EatonClick is a food delivery service built using Spring Boot for the backend an
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/your-username/EatonClick.git
+
+   
+2. **Backend Setup:**
+     Install the required dependencies:
+     ```bash
+     cd server
+     mvn clean install
+  
+    Start the backend server:
+     ```bash
+     mvn spring-boot:run
+     
+3. **Frontend Setup:**
+   Install the required dependencies:
+   ```bash
+   cd client
+   npm install
+
+  Start the frontend server:
+   ```bash
+   npm run dev
+
+
+
+
+   
+
+
